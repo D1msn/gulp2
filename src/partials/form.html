@@ -1,0 +1,47 @@
+<form action="mail.php" enctype="multipart/form-data" class="form">
+  <div class="form-loading"></div>
+  <input type="hidden" name="admin_email[]" value="flash.volkov@gmail.com" />
+  <input type="hidden" name="form_subject" value="Заявка с сайта" />
+
+  <h2 class="form-title">Оставьте заявку</h2>
+
+  <ul class="form-list">
+
+    <li class="form-item">
+      <input class="form-input form-input--name" type="text " name="name" data-validate-field="name"
+        placeholder="Имя" />
+    </li>
+
+    <li class="form-item">
+      <div class="form-tel">
+        <select id="telselect">
+          <option value="RU">RU</option>
+          <option value="">RU</option>
+          <option value="BY">BY</option>
+          <option value="UA">UA</option>
+        </select>
+        <input class="form-input form-input--tel" type="tel" data-validate-field="tel" name="tel"
+          placeholder="Телефон" />
+      </div>
+    </li>
+
+    <li class="form-item">
+      <input class="form-input form-input--email" type="email " data-validate-field="email" name="email"
+        placeholder="Email" />
+    </li>
+
+    <li class="form-item">
+      <div class="form-file">
+        <label class="form-file-btn">
+          <span>Выбрать фото</span>
+          <input class="form-input" type="file" name="file[]" multiple id="formImage" />
+        </label>
+        <div id="formPreview"></div>
+        <span class="name-img"></span>
+      </div>
+
+    </li>
+  </ul>
+
+  <button class="form-btn" type="submit">Отправить</button>
+</form>

@@ -1,0 +1,30 @@
+// ----------Переменные-----------
+@import "vars.scss";
+
+// 1200px и Больше
+@media (min-width: $gridwith) {}
+
+// 992px - 1199px
+@media (min-width: 992px) and (max-width: 1354px) {}
+
+// 768px - 991px
+@media (min-width: 768px) and (max-width: 991px) {}
+
+// 0px - 767px
+@media (max-width: 767px) {
+  #burger-menu {
+    display: flex;
+    z-index: 10000;
+    border-radius: 6%;
+  }
+}
+
+// 0 - 320px
+@media (max-width: 320px) {}
+
+// 0 - 320px
+@media (max-width: 500px) {
+  .container {
+    width: 320px !important;
+  }
+}

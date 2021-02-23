@@ -1,0 +1,118 @@
+//Tabs
+
+.tabs__content {
+    display: none;
+    /* по умолчанию прячем все блоки */
+}
+
+.tabs__content.active {
+    display: block;
+    /* по умолчанию показываем нужный блок */
+}
+
+//Tabs end
+
+//byrgmenu
+
+.menu-pos {
+    z-index: 999;
+}
+
+#burger-menu {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    flex-direction: column;
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    background-color: $accent;
+    position: fixed;
+    right: -20px;
+    top: 25px;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    &.active {
+        .box_item1 {
+            -webkit-transform: translateX(0) translateY(8px) rotate(45deg);
+            transform: translateX(0) translateY(13px) rotate(45deg);
+        }
+
+        .box_item2 {
+            opacity: 0;
+        }
+
+        .box_item3 {
+            -webkit-transform: translateX(0) translateY(-8px) rotate(-45deg);
+            transform: translateX(0) translateY(-8px) rotate(-45deg);
+        }
+    }
+
+    .box {
+        width: 44px;
+        height: 3px;
+        background: #333333;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        border-radius: 5px;
+        margin: 4px 0;
+        transition: 0.3s all ease;
+    }
+}
+
+.show_mobile_menu {
+    top: 0 !important;
+}
+
+#mobile-menu {
+    box-sizing: border-box;
+    position: fixed;
+    top: -100%;
+    z-index: 2;
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    transition: 0.55s all ease;
+    background-color: $accent;
+    overflow: auto;
+
+    ul {
+        text-align: center;
+        list-style: none;
+        padding: 80px 0 20px 0;
+        margin: 0;
+
+        li:not(:last-child) {
+            margin-bottom: 30px;
+        }
+
+        li:last-child {
+            padding-top: 30px;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 25px;
+            font-weight: 400;
+
+            color: #333333;
+        }
+
+        li:last-of-type {
+            text-decoration: underline;
+        }
+    }
+}
+
+.block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+//byrgmenuEND

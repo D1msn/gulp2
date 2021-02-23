@@ -1,0 +1,20 @@
+// CUSTOM COMPONENTS STYLES
+// .burger {
+//   --burger-width: 40px;
+//   --burger-height: 20px;
+//   --burger-line-height: 2px;
+
+//   @include burger;
+// }
+// ----------Переменные-----------
+@import "vars.scss";
+// ----------Стили Модального окна-----------
+@import "./components/modal";
+// ----------Стили Формы-----------
+@import "./components/form";
+// ----------Стили Табов и Бургерменю-----------
+@import "./components/tabsBurger";
+// ----------Стили Хедера-----------
+@import "./components/header";
+// ----------Стили Футера-----------
+@import "./components/footer";

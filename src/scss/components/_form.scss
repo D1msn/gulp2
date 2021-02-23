@@ -1,0 +1,167 @@
+.form {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  &-loading {
+    display: none;
+    opacity: 0;
+    position: absolute;
+    width: 50%;
+    height: 90%;
+    background-color: #ffffffba;
+    z-index: 100;
+
+    &.active {
+      display: block;
+      opacity: 1;
+      background-image: url("../img/loading.gif");
+      background-repeat: no-repeat;
+      background-position: center center;
+      cursor: progress;
+
+    }
+
+
+  }
+
+  // стили валидации
+  .js-validate-error-label {
+    display: none;
+  }
+
+
+
+  // Стили формы
+
+  &-title {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  &-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+
+  }
+
+  &-tel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .choices {
+    position: absolute;
+    margin-bottom: 0;
+
+
+    #choices--telselect-item-choice-3 {
+      display: none;
+    }
+
+    &__list--dropdown {
+      width: 285px;
+    }
+
+    &__inner {
+      background-color: transparent;
+      border: none;
+      border-right: 1px solid #dddddd;
+    }
+
+  }
+
+  &-list {
+    margin: 0;
+    width: 285px;
+  }
+
+  &-input {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    background-color: #f9f9f9;
+    padding: 7.5px 7.5px 3.75px;
+    border: 1px solid #dddddd;
+    border-radius: 2.5px;
+    font-size: 14px;
+    min-height: 44px;
+    overflow: hidden;
+
+    &--tel {
+      padding: 2% 0 2% 23%;
+    }
+
+
+
+  }
+
+  &-file {
+    position: relative;
+    width: 100%;
+
+    &-btn {
+      font-size: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      background-color: #f9f9f9;
+      border: 1px solid #dddddd;
+      padding: 5px 10px;
+      border-radius: 20px;
+
+
+    }
+
+
+    input[type="file"] {
+      display: none;
+    }
+
+
+    #formPreview {
+      position: absolute;
+      right: -200px;
+      top: 0;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(50px, 50px));
+      grid-template-rows: repeat(3, minmax(50px, 50px));
+
+      grid-gap: 4px;
+      padding: 4px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border: 1px solid #e2e2e2;
+      }
+
+
+    }
+  }
+
+  .name-img {
+    font-size: 14px;
+
+    p:first-child {
+      padding-top: 10px;
+    }
+  }
+
+  &-btn {
+    height: 50px;
+    width: 200px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    border: 1px solid #dddddd;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+}
