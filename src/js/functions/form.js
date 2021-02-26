@@ -122,6 +122,37 @@ function clearImageInfo() {
 
 }
 
+// Функция добавление инпута с доп емейлом
+
+function addEmailSend() {
+  let addEmailInputValue = document.querySelector('.form-email-add__input').value;
+  let form = document.querySelector('.form');
+
+  if (addEmailInputValue != "") {
+
+    form.insertAdjacentHTML("afterBegin", `<input type="hidden" name="admin_email[]" value="${addEmailInputValue}" />`);
+
+    console.log("Инпут создан")
+
+
+  } else {
+    return;
+  }
+
+}
+
+// Функция удаления доп емейла
+
+function removeEmailSend() {
+  let addEmailInputValue = document.querySelector('.form-email-add__input').value;
+
+  let inputEmail = document.querySelector(`input[value="${addEmailInputValue}"]`);
+
+  if (inputEmail != null) inputEmail.remove();
+
+}
+
+
 
 // ---------------- Обработчик формы --------------
 
@@ -129,6 +160,8 @@ let validateForms = function (selector, rules, successModal, yaGoal) {
   new window.JustValidate(selector, {
     rules: rules,
     submitHandler: function (form) {
+      debugger
+      addEmailSend();
       let formData = new FormData(form);
 
       formLoading.classList.add("active");
@@ -141,14 +174,17 @@ let validateForms = function (selector, rules, successModal, yaGoal) {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
             console.log('Отправлено');
+
             formLoading.classList.remove("active");
             document.getElementById('modal1').click();
+
           }
         }
       }
 
       xhr.open('POST', 'mail.php', true);
       xhr.send(formData);
+      removeEmailSend();
 
       form.reset();
       clearImageInfo();
