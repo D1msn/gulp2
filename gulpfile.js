@@ -1,31 +1,28 @@
-const {
-  src,
-  dest,
-  parallel,
-  series,
-  watch
-} = require('gulp');
-const autoprefixer = require('gulp-autoprefixer');
-const cleanCSS = require('gulp-clean-css');
-const uglify = require('gulp-uglify-es').default;
-const del = require('del');
-const browserSync = require('browser-sync').create();
-const sass = require('gulp-sass');
-const svgSprite = require('gulp-svg-sprite');
-const fileInclude = require('gulp-file-include');
-const sourcemaps = require('gulp-sourcemaps');
-const rev = require('gulp-rev');
-const revRewrite = require('gulp-rev-rewrite');
-const revDel = require('gulp-rev-delete-original');
-const htmlmin = require('gulp-htmlmin');
-const gulpif = require('gulp-if');
-const notify = require('gulp-notify');
-const image = require('gulp-image');
+import gulp from 'gulp';
+import autoprefixer from 'gulp-autoprefixer';
+import cleanCSS from 'gulp-clean-css';
+import uglify from 'gulp-uglify-es';
+import del from 'del';
+import browserSync from 'browser-sync';
+import svgSprite from 'gulp-svg-sprite';
+import fileInclude from 'gulp-file-include';
+import sourcemaps from 'gulp-sourcemaps';
+import rev from 'gulp-rev';
+import revRewrite from 'gulp-rev-rewrite';
+import revDel from 'gulp-rev-delete-original';
+import htmlmin from 'gulp-htmlmin';
+import gulpif from 'gulp-if';
+import notify from 'gulp-notify';
+import image from 'gulp-image';
 
-const {
-  readFileSync
-} = require('fs');
-const concat = require('gulp-concat');
+import {readFileSync} from 'fs'
+import concat from 'gulp-concat'
+
+import dartSass from 'sass'
+import gulpSass from 'gulp-sass'
+const sass = gulpSass(dartSass)
+
+const { src, dest, series, watch } = gulp
 
 let isProd = false; // dev by default
 
@@ -73,13 +70,13 @@ const stylesBackend = () => {
 const scripts = () => {
   src('./src/js/vendor/**.js')
     .pipe(concat('vendor.js'))
-    .pipe(gulpif(isProd, uglify().on("error", notify.onError())))
+    .pipe(gulpif(isProd, uglify))
     .pipe(dest('./app/js/'))
   return src(
     ['./src/js/functions/**.js', './src/js/components/**.js', './src/js/main.js'])
     .pipe(gulpif(!isProd, sourcemaps.init()))
     .pipe(concat('main.js'))
-    .pipe(gulpif(isProd, uglify().on("error", notify.onError())))
+    .pipe(gulpif(isProd, uglify))
     .pipe(gulpif(!isProd, sourcemaps.write('.')))
     .pipe(dest('./app/js'))
     .pipe(browserSync.stream());
@@ -88,7 +85,7 @@ const scripts = () => {
 const scriptsBackend = () => {
   src('./src/js/vendor/**.js')
     .pipe(concat('vendor.js'))
-    .pipe(gulpif(isProd, uglify().on("error", notify.onError())))
+    .pipe(gulpif(isProd, uglify))
     .pipe(dest('./app/js/'))
   return src(['./src/js/functions/**.js', './src/js/components/**.js', './src/js/main.js'])
     .pipe(dest('./app/js'))
@@ -131,7 +128,7 @@ const watchFiles = () => {
   watch('./src/img/svg/**.svg', svgSprites);
 }
 
-const cache = () => {
+const appCache = () => {
   return src('app/**/*.{css,js,svg,png,jpg,jpeg,woff2}', {
     base: 'app'
   })
@@ -165,10 +162,12 @@ const toProd = (done) => {
   done();
 };
 
-exports.default = series(clean, htmlInclude, scripts, styles, resources, images, svgSprites, watchFiles);
+const build = series(toProd, clean, htmlInclude, scripts, styles, resources, images, svgSprites, htmlMinify);
 
-exports.build = series(toProd, clean, htmlInclude, scripts, styles, resources, images, svgSprites, htmlMinify);
+const cache = series(appCache, rewrite);
 
-exports.cache = series(cache, rewrite);
+const backend = series(toProd, clean, htmlInclude, scriptsBackend, stylesBackend, resources, images, svgSprites);
 
-exports.backend = series(toProd, clean, htmlInclude, scriptsBackend, stylesBackend, resources, images, svgSprites);
+export {build, cache, backend}
+
+ export default series(clean, htmlInclude, scripts, styles, resources, images, svgSprites, watchFiles);
